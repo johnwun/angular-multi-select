@@ -10,8 +10,5 @@
     ".gitignore",
     "README.md",
     "screenshot.png"
-  ],
-  "dependencies": {
-    "lodash": "3.10.1"
-  }
+  ]
 }
