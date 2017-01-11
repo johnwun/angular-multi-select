@@ -1015,7 +1015,7 @@ angular.module('multi-select', ['ng']).directive('multiSelect', [ '$sce', '$time
       }
     }
 
-    $(element).parent().scope().$watch('filteredModel', function(newVal) {
+    $scope.$parent.$watch('filteredModel', function(newVal) {
 
       //init position to 0;
       longest = 0;
@@ -1028,8 +1028,8 @@ angular.module('multi-select', ['ng']).directive('multiSelect', [ '$sce', '$time
         newVal[c].displayIndex = c;
       }
 
-      $(element).parent().scope().subFilteredModel = newVal.slice(0, showMax);
-      $scope.containerHeight = $(element).parent().scope().filteredModel.length * rowHeight;
+      $scope.$parent.subFilteredModel = newVal.slice(0, showMax);
+      $scope.containerHeight = $scope.$parent.filteredModel.length * rowHeight;
 
       var throttledScroll = throttle(function() {
         scrollTop = $(element).scrollTop();
@@ -1038,8 +1038,8 @@ angular.module('multi-select', ['ng']).directive('multiSelect', [ '$sce', '$time
           return;
         }
         lastScrollPosition = topElPos;
-        $(element).parent().scope().subFilteredModel = newVal.slice(topElPos, topElPos + showMax);
-        $(element).parent().scope().$digest();
+        $scope.$parent.subFilteredModel = newVal.slice(topElPos, topElPos + showMax);
+        $scope.$parent.$digest();
         setWidthToWidestElement();
         setAllWidthsTo(longest);
 
